@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Scheme {
+  id                  String  @id @default(uuid())
+  name                String
+  category            String
+  maxIncome           Float
+  maxProjectCost      Float
+  maxLoanAmount       Float
+  financingPercentage Float
+  interestRate        Float
+  moratoriumMonths    Int
+  tenureMonths        Int
+  description         String
+  requiredDocuments   String
+
+  recommendations     Recommendation[]
+}
+
+model ChannelPartner {
+  id               String  @id @default(uuid())
+  name             String
+  type             String
+  city             String
+  latitude         Float
+  longitude        Float
+  supportedSchemes String // Comma separated scheme IDs for simplicity
+  active           Boolean @default(true)
+  fundStatus       String
+  address          String
+  contact          String
+}
+
+model User {
+  id                String   @id @default(uuid())
+  name              String
+  income            Float
+  purpose           String
+  business          String?
+  projectCost       Float
+  location          String
+  preferredLanguage String
+  createdAt         DateTime @default(now())
+
+  recommendations   Recommendation[]
+}
+
+model Recommendation {
+  id             String   @id @default(uuid())
+  userId         String
+  schemeId       String
+  matchScore     Float
+  matchReason    String
+  createdAt      DateTime @default(now())
+
+  user           User     @relation(fields: [userId], references: [id])
+  scheme         Scheme   @relation(fields: [schemeId], references: [id])
+}
