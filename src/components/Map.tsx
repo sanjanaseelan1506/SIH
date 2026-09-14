@@ -18,7 +18,7 @@ export default function Map({ partners }: { partners: any[] }) {
   const center = [partners[0].latitude, partners[0].longitude] as [number, number]
 
   return (
-    <MapContainer center={center} zoom={12} scrollWheelZoom={false} style={{ height: '400px', width: '100%', borderRadius: '1rem', zIndex: 0 }}>
+    <MapContainer center={center} zoom={12} scrollWheelZoom={false} style={{ height: '100%', width: '100%', zIndex: 0 }}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
