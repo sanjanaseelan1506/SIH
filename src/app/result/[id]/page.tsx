@@ -1,11 +1,10 @@
-import { PrismaClient } from '@prisma/client'
+import prisma from '@/lib/prisma'
 import { notFound } from 'next/navigation'
 import dynamic from 'next/dynamic'
 import { CheckCircle2, Info, Calculator, MapPin, Building2, Phone, AlertTriangle, ArrowRight, ShieldCheck, PieChart, Sparkles } from 'lucide-react'
 import Link from 'next/link'
 
 const Map = dynamic(() => import('@/components/Map'), { ssr: false })
-const prisma = new PrismaClient()
 
 export default async function ResultPage({ params }: { params: { id: string } }) {
   const recommendation = await prisma.recommendation.findUnique({

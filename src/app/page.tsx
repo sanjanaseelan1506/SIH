@@ -1,8 +1,6 @@
 import Link from 'next/link'
 import { ArrowRight, CheckCircle2, ChevronRight, FileText, Search, Calculator, MapPin, BarChart3, Users, Landmark } from 'lucide-react'
-import { PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient()
+import prisma from '@/lib/prisma'
 
 export default async function Home() {
   const schemes = await prisma.scheme.findMany()
