@@ -38,3 +38,5 @@ next-env.d.ts
 pgsql/
 postgres.zip
 logfile
+
+.env
